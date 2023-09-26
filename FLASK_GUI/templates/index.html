@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stable marriage problem</title>
+</head>
+<body>
+    <style>
+    </style>
+    <h1 style="text-align: center;">Stable Marriage Problem</h1>
+    <h4 style="text-align: center;font-weight: normal;">Buscamos emparejar personas a partir de sus preferencias</h4>
+    <h4>Ingrese la lista de hombres:</h4>
+    <div>
+        <input type="text" placeholder="Hombre1" id="H1">
+        <input type="text" placeholder="Hombre2" id="H2">
+        <input type="text" placeholder="Hombre3" id="H3">
+        <input type="text" placeholder="Hombre4" id="H4">
+        <input type="text" placeholder="Hombre5" id="H5">
+        <input type="text" placeholder="Hombre6" id="H6">
+        <button type="button" onclick="processArray1()">Guardar Nombres</button>
+    </div>
+    <h4>Ingrese la lista de mujeres:</h4>
+    <div>
+        <input type="text" placeholder="Mujer1" id="M1">
+        <input type="text" placeholder="Mujer2" id="M2">
+        <input type="text" placeholder="Mujer3" id="M3">
+        <input type="text" placeholder="Mujer4" id="M4">
+        <input type="text" placeholder="Mujer5" id="M5">
+        <input type="text" placeholder="Mujer6" id="M6">
+        <button type="button" onclick="processArray2()">Guardar Nombres</button>
+    </div>
+
+    <h4>Ingrese la matriz de preferencia de hombres a mujeres en un arreglo de 2 dimensiones:</h4>
+    <form id="arrayForm">
+        <input type="text" id="arrayInput1" style="width: 50%;" placeholder="[ [ ] , [ ] ]">
+        <button type="button" onclick="processArray3()">Guardar Arreglo</button>
+    </form>
+
+    <h4>Ingrese la matriz de preferencia de mujeres a hombres en un arreglo de 2 dimensiones:</h4>
+    <form id="arrayForm">
+        <input type="text" id="arrayInput2" style="width: 50%;" placeholder="[ [ ] , [ ] ]">
+        <button type="button" onclick="processArray4()">Guardar Arreglo</button>
+    </form>
+    <br>
+    <button id="enviar">Resolver Problema</button>
+
+    <h3>Resultados:</h3>
+    <p id="resultados"></p>
+
+    <script>
+        var nombres_hombres=[]
+        var nombres_mujeres=[]
+        var array_H_M;
+        var array_M_H;
+
+        function processArray1() {
+            var array=[]
+            var inputs = document.getElementsByTagName('input');
+
+            for (var i = 0; i < 6; i++) {
+                array.push(inputs[i].value);
+            }
+            nombres_hombres=array
+        }
+
+        function processArray2() {
+            var array=[]
+            var inputs = document.getElementsByTagName('input');
+
+            for (var i = 6; i < 12; i++) {
+                array.push(inputs[i].value);
+            }
+            nombres_mujeres=array
+        }
+
+        function processArray3() {
+            const inputElement = document.getElementById("arrayInput1");
+            const inputValue = inputElement.value;
+            array_H_M = JSON.parse(inputValue);
+        }
+
+        function processArray4() {
+            const inputElement = document.getElementById("arrayInput2");
+            const inputValue = inputElement.value;
+            array_M_H = JSON.parse(inputValue);
+        }
+
+        document.getElementById('enviar').addEventListener('click', function() {
+
+            var array_total=[]
+
+            array_total.push(nombres_hombres)
+            array_total.push(nombres_mujeres)
+            array_total.push(array_H_M)
+            array_total.push(array_M_H)
+
+            fetch('/mi_ruta', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ array: array_total }) // Envia el arreglo en formato JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultadosElement = document.getElementById("resultados");
+
+                resultadosElement.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            
+        });
+    </script>
+</body>
+</html>

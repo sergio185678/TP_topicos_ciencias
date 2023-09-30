@@ -4,50 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stable marriage problem</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 </head>
 <body>
     <style>
     </style>
     <h1 style="text-align: center;">Stable Marriage Problem</h1>
-    <h4 style="text-align: center;font-weight: normal;">Buscamos emparejar personas a partir de sus preferencias</h4>
-    <h4>Ingrese la lista de hombres:</h4>
-    <div>
-        <input type="text" placeholder="Hombre1" id="H1">
-        <input type="text" placeholder="Hombre2" id="H2">
-        <input type="text" placeholder="Hombre3" id="H3">
-        <input type="text" placeholder="Hombre4" id="H4">
-        <input type="text" placeholder="Hombre5" id="H5">
-        <input type="text" placeholder="Hombre6" id="H6">
-        <button type="button" onclick="processArray1()">Guardar Nombres</button>
+    <h4 class="desc" style="text-align: center;font-weight: normal;">Buscamos emparejar personas a partir de sus preferencias</h4>
+    
+    <div class="h_input">
+        <h4 class="subt">Ingrese la lista de hombres:</h4>
+        <input class="input_" type="text" placeholder="Hombre1" id="H1">
+        <input class="input_" type="text" placeholder="Hombre2" id="H2">
+        <input class="input_" type="text" placeholder="Hombre3" id="H3">
+        <input class="input_" type="text" placeholder="Hombre4" id="H4">
+        <input class="input_" type="text" placeholder="Hombre5" id="H5">
+        <input class="input_" type="text" placeholder="Hombre6" id="H6">
+        <button class="btn1" type="button" onclick="processArray1()">Guardar Nombres</button>
     </div>
-    <h4>Ingrese la lista de mujeres:</h4>
-    <div>
-        <input type="text" placeholder="Mujer1" id="M1">
-        <input type="text" placeholder="Mujer2" id="M2">
-        <input type="text" placeholder="Mujer3" id="M3">
-        <input type="text" placeholder="Mujer4" id="M4">
-        <input type="text" placeholder="Mujer5" id="M5">
-        <input type="text" placeholder="Mujer6" id="M6">
-        <button type="button" onclick="processArray2()">Guardar Nombres</button>
+    
+    <div class="m_input">
+        <h4 class="subt">Ingrese la lista de mujeres:</h4>
+        <input class="input_" type="text" placeholder="Mujer1" id="M1">
+        <input class="input_" type="text" placeholder="Mujer2" id="M2">
+        <input class="input_" type="text" placeholder="Mujer3" id="M3">
+        <input class="input_" type="text" placeholder="Mujer4" id="M4">
+        <input class="input_" type="text" placeholder="Mujer5" id="M5">
+        <input class="input_" type="text" placeholder="Mujer6" id="M6">
+        <button class="btn1" type="button" onclick="processArray2()">Guardar Nombres</button>
     </div>
 
-    <h4>Ingrese la matriz de preferencia de hombres a mujeres en un arreglo de 2 dimensiones:</h4>
-    <form id="arrayForm">
-        <input type="text" id="arrayInput1" style="width: 50%;" placeholder="[ [ ] , [ ] ]">
-        <button type="button" onclick="processArray3()">Guardar Arreglo</button>
+    
+    <form id="arrayForm" class="form_">
+        <h4 class="subt">Ingrese la matriz de preferencia de hombres a mujeres en un arreglo de 2 dimensiones:</h4>
+        <input class="input_2" type="text" id="arrayInput1" style="width: 50%;" placeholder="[ [ ] , [ ] ]">
+        <button class="btn1" type="button" onclick="processArray3()">Guardar Arreglo</button>
     </form>
 
-    <h4>Ingrese la matriz de preferencia de mujeres a hombres en un arreglo de 2 dimensiones:</h4>
-    <form id="arrayForm">
-        <input type="text" id="arrayInput2" style="width: 50%;" placeholder="[ [ ] , [ ] ]">
-        <button type="button" onclick="processArray4()">Guardar Arreglo</button>
+    
+    <form id="arrayForm" class="form_">
+        <h4 class="subt">Ingrese la matriz de preferencia de mujeres a hombres en un arreglo de 2 dimensiones:</h4>
+        <input class="input_2" type="text" id="arrayInput2" style="width: 50%;" placeholder="[ [ ] , [ ] ]">
+        <button class="btn1" type="button" onclick="processArray4()">Guardar Arreglo</button>
+        <button class="btn2" id="enviar" class="solve">Resolver Problema</button>
     </form>
     <br>
-    <button id="enviar">Resolver Problema</button>
-
-    <h3>Resultados:</h3>
-    <p id="resultados"></p>
-
+    
+    <div class="form_">
+        <h3 class="desc">Resultados:</h3>
+        <p id="resultados"></p>
+    </div>
+    
     <script>
         var nombres_hombres=[]
         var nombres_mujeres=[]
